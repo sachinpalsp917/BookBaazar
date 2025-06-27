@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import { morganMiddleware } from "./utils/logging";
 import { OK } from "./constants/httpStatusCode";
+import errorHandler from "./middleware/errorHandler";
 
 const app: Application = express();
 
@@ -23,4 +24,6 @@ app.use(morganMiddleware);
 app.get("/health", (_, res) => {
   res.status(OK).send("Healthy");
 });
+
+app.use(errorHandler);
 export default app;
