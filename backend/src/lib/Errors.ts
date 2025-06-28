@@ -1,4 +1,4 @@
-import { BAD_REQUEST } from "../constants/httpStatusCode";
+import { BAD_REQUEST, CONFLICT } from "../constants/httpStatusCode";
 
 abstract class AppError extends Error {
   constructor(
@@ -17,4 +17,10 @@ class BadRequestError extends AppError {
   }
 }
 
-export { AppError, BadRequestError };
+class ConflictError extends AppError {
+  constructor(message: string = "Conflict") {
+    super(CONFLICT, "CONFLICT", message);
+  }
+}
+
+export { AppError, BadRequestError, ConflictError };

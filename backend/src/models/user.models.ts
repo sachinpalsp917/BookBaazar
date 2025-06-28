@@ -23,7 +23,13 @@ export interface UserDocument extends mongoose.Document {
   comparePassword(val: string): Promise<boolean>;
   omitPassword(): Pick<
     UserDocument,
-    "_id" | "username" | "email" | "role" | "Avatar" | "createdAt"
+    | "_id"
+    | "username"
+    | "email"
+    | "isEmailVerified"
+    | "role"
+    | "Avatar"
+    | "createdAt"
   >;
 }
 
@@ -49,6 +55,7 @@ const userSchema = new mongoose.Schema<UserDocument>(
     role: {
       type: String,
       required: true,
+      default: UserRoles.USER,
     },
     Avatar: {
       type: {
